@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavDropdown } from "react-bootstrap"
 import { Link, withRouter } from 'react-router-dom';
+import { FcLike } from "react-icons/fc"
 
 class NavBar extends Component {
     render() {
@@ -22,9 +23,9 @@ class NavBar extends Component {
                     </Nav>
                     <Nav>
                     <Nav.Link href="#deets">Contact</Nav.Link>
-                    <Nav.Link eventKey={2} href="#memes">
-                        Links
-                    </Nav.Link>
+                    <Link className="nav-link" eventKey={2} to="/favourites">
+                        <FcLike/>
+                    </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

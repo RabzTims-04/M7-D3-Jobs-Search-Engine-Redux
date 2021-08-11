@@ -4,6 +4,9 @@ import mainReducer from "../reducers/reducers"
  export const initialState = {
      favourites:{
          companies:[]
+     },
+     alert:{
+         message:false
      }
  }
 
