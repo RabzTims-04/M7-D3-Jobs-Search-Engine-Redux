@@ -11,7 +11,10 @@ class Home extends Component {
         companySearch:"",
         categories:[],
         categorySearch:"",
-        categoryJobs:[]
+        categoryJobs:[],
+        jobcount:"",
+        categoryJobCount:"",
+        companyCount:""
     }
 
     componentDidMount = () => {
@@ -29,6 +32,7 @@ class Home extends Component {
                 this.setState({
                     ...this.state,
                     jobs: data.jobs,
+                    jobcount: data["job-count"]
                 })
             }
         } catch (error) {
@@ -48,6 +52,7 @@ class Home extends Component {
                 this.setState({
                     ...this.state,
                     companies: data.jobs,
+                    companyCount: data["job-count"]
                 })
             }
         } catch (error) {
@@ -82,6 +87,7 @@ class Home extends Component {
                 this.setState({
                     ...this.state,
                     categoryJobs: data.jobs,
+                    categoryJobCount: data["job-count"]
                 })
             }
 
@@ -152,8 +158,11 @@ class Home extends Component {
                         </Form>
                    </Col>
                 </Row>
-                
-            <p>Total result:</p>
+                {this.state.jobs.length? <p>Total results: {this.state.jobcount}</p>
+                : this.state.categoryJobs.length? <p> Total results: {this.state.categoryJobCount}</p>
+                :this.state.companies.length?  <p> Total results: {this.state.companyCount}</p> 
+                : <></> }
+            
             </Container>
             <JobsList jobs={this.state.jobs.length ?this.state.jobs:this.state.companies.length?this.state.companies:this.state.categoryJobs} />
             </>
