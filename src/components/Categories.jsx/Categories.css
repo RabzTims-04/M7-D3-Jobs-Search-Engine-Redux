@@ -1,0 +1,13 @@
+#custom-form-categories{
+    border-radius: 25px!important;
+}
+
+.side-panels-categories{
+    min-height: 100vh;
+}
+
+.background-img-categories{
+    background-image: url("https://wallpaperaccess.com/full/2471314.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

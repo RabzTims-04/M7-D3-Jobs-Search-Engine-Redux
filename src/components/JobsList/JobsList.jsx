@@ -16,9 +16,12 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 class JobsList extends Component {
+    componentDidMount = () => {
+        console.log("joblist jobs", this.props.jobsList);
+    }
     render() {
         return (            
-                this.props.jobs?.slice(0,10).map((job, i) => 
+                this.props.jobsList.slice(0,10).map((job, i) => 
                         <div onClick={() => this.props.addedJobDetails(job)} style={{backgroundColor:"white", cursor:"pointer"}} className="m-2 joblist-cards" >
                             <Container fluid key={job.id}>
                                <Row>

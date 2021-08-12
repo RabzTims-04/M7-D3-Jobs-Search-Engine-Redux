@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card, Form, FormControl } from "react-bootstrap"
+import { Container, Row, Col, Card, Form } from "react-bootstrap"
 import OffcanvasDescription from '../../OffcanvasDescription/OffcanvasDescription';
 import { RiHomeHeartFill } from "react-icons/ri"
 import { BiBookHeart } from "react-icons/bi"
@@ -8,24 +8,30 @@ import { MdWork } from "react-icons/md"
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import "./Categories.css"
+import { fetchCategoriesAction, fetchCategoryJobsAction } from '../../redux/actions/actions';
 
 const mapStateToProps = (state) => state
+
+const mapDispatchToProps = (dispatch) => ({
+    fetchCategories: () => dispatch(fetchCategoriesAction()),
+    searchCategories: (categorySearch) => dispatch(fetchCategoryJobsAction(categorySearch))
+})
 
 class Categories extends Component {
 
     state={
-        categories:[],
+       /*  categories:[], */
         categorySearch:"",
-        categoryJobs:[],
+/*         categoryJobs:[], */
         categoryJobCount:"",
     }
 
     componentDidMount = () => {
-        this.fetchCategories()
+        this.props.fetchCategories()
     }
 
     fetchCategories = async (e) => {
-        try {
+        /* try {
             const response = await fetch(`https://remotive.io/api/remote-jobs/categories`) 
             const data = await response.json()
             console.log(data.jobs);
@@ -37,12 +43,12 @@ class Categories extends Component {
             }
         } catch (error) {
             console.log(error);
-        }
+        } */
     }
 
-    searchCategories = async (e) => {
+    /*searchCategories = async (e) => {
         console.log(this.state.category);
-        try {
+         try {
             const response = await fetch(`https://remotive.io/api/remote-jobs?category=${this.state.categorySearch}`)
             const data = await response.json()
             console.log(data.jobs);
@@ -56,8 +62,8 @@ class Categories extends Component {
 
         }catch (error){
             console.log(error);
-        }
-    }
+        } 
+    }*/
     render() {
         return (
             <>
@@ -66,7 +72,7 @@ class Categories extends Component {
           </style>
             <Container fluid>
                 <Row >
-                    <Col style={{borderRight:"1px solid #F3F2EF"}} className="side-panels p-0" md={3}>
+                    <Col style={{borderRight:"1px solid #F3F2EF"}} className="side-panels-categories p-0" md={3}>
                         <Card style={{ width: '100%', border:"none", paddingTop:"40px", backgroundColor:"transparent" }}>
                             <Link style={{color:'black', fontWeight:"bolder"}} to="/" className="navbar-brand text-center">FutureJobs&copy;</Link>
                                     <Card.Body>                                        
@@ -74,18 +80,19 @@ class Categories extends Component {
                                             <div className="my-4">
                                                 <Form.Group as={Col} controlId="formGridState">
                                                     <Form.Control
+                                                    id="custom-form-categories"
                                                     value={this.state.categorySearch}
                                                     onChange={(e)=> {
                                                         this.setState({
                                                         ...this.state,
                                                         categorySearch:e.target.value
                                                     })
-                                                    this.searchCategories(e)
+                                                    this.props.searchCategories(this.state.categorySearch)
                                                 }}
                                                     as="select" 
                                                     defaultValue="Select...">
                                                         <option>Select...</option>
-                                                        {this.state.categories && this.state.categories.map(category =>  
+                                                        {this.props.categories.categoriesArray.map(category =>  
                                                         <option value={category.name}>{category.name}</option>
                                                         )}
                                                     
@@ -124,9 +131,9 @@ class Categories extends Component {
                                 </div>
                     </Col>
 
-                    {!this.state.categoryJobs.length? 
+                    {!this.props.categoryJobs.categoryJobsArray.length? 
 
-                    <Col className="background-img"  md={9} >
+                    <Col className="background-img-categories"  md={9} >
                         <div style={{marginTop:"20%", color:"white"}} className="text-center pt-4 pb-3">
                             <h2>Search For Company that best suits you</h2>
                         </div>
@@ -138,7 +145,7 @@ class Categories extends Component {
                             <h2>Search For Company that best suits you</h2>
                         </div>
                         <Row style={{backgroundColor:"#F3F2EF"}}>
-                            <OffcanvasDescription jobs={this.state.categoryJobs}/>
+                            <OffcanvasDescription jobsList={this.props.categoryJobs.categoryJobsArray}/>
                         </Row>
                     </Col> 
                 }
@@ -149,4 +156,4 @@ class Categories extends Component {
     }
 }
 
-export default connect(mapStateToProps)(Categories);
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

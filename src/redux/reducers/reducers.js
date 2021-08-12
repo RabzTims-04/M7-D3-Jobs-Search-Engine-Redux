@@ -1,4 +1,4 @@
-import { initialState } from "../store/store"
+/* import { initialState } from "../store/store"
 
 
 const mainReducer = (state = initialState, action) => {
@@ -39,4 +39,4 @@ const mainReducer = (state = initialState, action) => {
     }
 }
 
-export default mainReducer
+export default mainReducer */

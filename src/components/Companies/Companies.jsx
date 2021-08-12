@@ -10,24 +10,28 @@ import { BiAlignLeft } from "react-icons/bi"
 import { MdWork } from "react-icons/md"
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { fetchCompaniesAction } from '../../redux/actions/actions';
 
 const mapStateToProps = (state) => state
+
+const mapDispatchToProps = (dispatch) => ({
+    searchCompanies: (event, companySearch) => dispatch(fetchCompaniesAction(event,companySearch))
+})
 
 class Companies extends Component {
 
     state={
-        companies:[],
+        /* companies:[], */
         companySearch:"",
         companyCount:""
     }
 
-    searchCompanies = async (e) => {
+    /*searchCompanies = async (e) => {
         if(e.key === "Enter"){
             e.preventDefault()
-            try {
+             try {
                 const response = await fetch(`https://remotive.io/api/remote-jobs?company_name=${this.state.companySearch}`) 
                 const data = await response.json()
-                /* this.props.companies(data.jobs) */
                 console.log(data.jobs);
                 if(response.ok){
                     this.setState({
@@ -38,9 +42,10 @@ class Companies extends Component {
                 }
             } catch (error) {
                 console.log(error);
-            }
+            } 
         }
-    }    
+    }  
+    */  
 
     render() {
        
@@ -59,7 +64,7 @@ class Companies extends Component {
                                             <div className="my-4">
                                                 <Form inline>
                                                     <FormControl
-                                                    onKeyDown={(e)=>this.searchCompanies(e)}
+                                                    onKeyDown={(e)=>this.props.searchCompanies(e, this.state.companySearch)}
                                                     id="custom-form"
                                                     value={this.state.companySearch}
                                                     onChange={(e)=>
@@ -108,7 +113,7 @@ class Companies extends Component {
                                 </div>
                     </Col>
 
-                    {!this.state.companies.length? 
+                    {!this.props.companies.companiesArray.length? 
 
                     <Col className="background-img"  md={8} >
                         <div style={{marginTop:"20%", color:"white"}} className="text-center pt-4 pb-3">
@@ -122,7 +127,7 @@ class Companies extends Component {
                             <h2>Search For Company that best suits you</h2>
                         </div>
                         <Row style={{backgroundColor:"#F3F2EF"}}>
-                            <OffcanvasDescription jobs={this.state.companies}/>
+                            <OffcanvasDescription jobsList={this.props.companies.companiesArray}/>
                         </Row>
                     </Col> 
                 }
@@ -143,4 +148,4 @@ class Companies extends Component {
     }
 }
 
-export default connect(mapStateToProps)(Companies);
+export default connect(mapStateToProps, mapDispatchToProps)(Companies);

@@ -15,16 +15,17 @@ const mapDispatchToProps = (dispatch) => ({
     removeFromFavourites: company => dispatch(removeFromFavouritesAction(company))
 })
 
-function OffcanvasDescription({jobs, jobDetails,addToFavourites, favourites, removeFromFavourites}) {
+function OffcanvasDescription({jobsList, jobDetails,addToFavourites, favourites, removeFromFavourites}) {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    console.log("jobs",jobsList);
   
     return (
       <>
       <div onClick={handleShow}>
-        <JobsList jobs={jobs}  />
+        <JobsList jobsList={jobsList}  />
       </div>
 
         <Offcanvas show={show} onHide={handleClose} scroll="true" backdrop="true" placement="end">

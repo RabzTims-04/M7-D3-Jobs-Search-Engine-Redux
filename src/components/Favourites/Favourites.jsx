@@ -21,7 +21,7 @@ class Favourites extends Component {
                 <Col sm={12}>
                 <ul style={{ listStyle: "none" }}>
                     {this.props.favourites.companies.length ? 
-                     <OffcanvasDescription jobs={this.props.favourites.companies}/>
+                     <OffcanvasDescription jobsList={this.props.favourites.companies}/>
                     : <p>No favourites to show</p>}
                 </ul>
                 </Col>

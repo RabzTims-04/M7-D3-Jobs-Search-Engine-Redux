@@ -8,21 +8,26 @@ import { GrWorkshop } from "react-icons/gr"
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import "./JobTitle.css"
+import { fetchJobsAction } from '../../redux/actions/actions';
 
 const mapStateToProps = (state) => state
+
+const mapDispatchToProps = (dispatch) => ({
+    searchJobs : (event, jobSearch) => dispatch(fetchJobsAction(event, jobSearch))
+})
 
 class JobTitle extends Component {
 
     state={
-        jobs:[],
+        /* jobs:[], */
         search:"",
         jobcount:"",
     }
 
-    searchJobs = async (e) => {
+    /*searchJobs = async (e) => {
         if(e.key === "Enter"){
         e.preventDefault()
-        try {
+         try {
             const response = await fetch(`https://remotive.io/api/remote-jobs?search=${this.state.search}`) 
             const data = await response.json()
             console.log(data);
@@ -35,9 +40,10 @@ class JobTitle extends Component {
             }
         } catch (error) {
             console.log(error);
-        }
+        } 
     }
     }
+    */
 
     render() {
         return (
@@ -55,7 +61,7 @@ class JobTitle extends Component {
                                             <div className="my-4">
                                                 <Form inline>
                                                     <FormControl
-                                                    onKeyDown={(e)=>this.searchJobs(e)}
+                                                    onKeyDown={(e)=>this.props.searchJobs(e, this.state.search)}
                                                     id="custom-form-jobs"
                                                     value={this.state.search}
                                                     onChange={(e)=>
@@ -104,7 +110,7 @@ class JobTitle extends Component {
                                 </div>
                     </Col>
 
-                    {!this.state.jobs.length? 
+                    {!this.props.jobs.jobsArray.length? 
 
                     <Col className="background-img-jobs"  md={10} >
                         <div style={{marginTop:"20%", color:"black"}} className="text-center pt-4 pb-3">
@@ -118,7 +124,7 @@ class JobTitle extends Component {
                             <h2>Find Your Dream Job</h2>
                         </div>
                         <Row style={{backgroundColor:"#F3F2EF"}}>
-                            <OffcanvasDescription jobs={this.state.jobs}/>
+                            <OffcanvasDescription jobsList={this.props.jobs.jobsArray}/>
                         </Row>
                     </Col> 
                 }
@@ -129,4 +135,4 @@ class JobTitle extends Component {
     }
 }
 
-export default connect(mapStateToProps)(JobTitle);
+export default connect(mapStateToProps, mapDispatchToProps)(JobTitle);
