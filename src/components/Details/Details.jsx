@@ -3,22 +3,6 @@ import { ListGroup, Container, Button } from 'react-bootstrap';
 import striptags from 'striptags';
 
 function Details({job}) {
-
- /*    state= {
-        job:null
-    } */
-
-/*     componentDidMount = async () => {
-        const selectedJob = await this.props.jobs.length?this.props.jobs.filter(job => job.id === parseInt(this.props.match.params.id)):
-        this.props.companies.length? this.props.companies?.filter(job => job.id === parseInt(this.props.match.params.id)):this.props.category?.filter(job => job.id === parseInt(this.props.match.params.id));
-        if(selectedJob) {
-        this.setState({
-            job: selectedJob[0]
-        });
-        console.log(this.state.job);
-        }
-    } */
-
    
         return (
           <Container>

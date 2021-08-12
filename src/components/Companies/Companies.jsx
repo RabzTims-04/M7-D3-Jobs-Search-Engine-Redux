@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Card, Form, FormControl } from "react-bootstrap"
 import "./Companies.css"
 import groupOfPeople from "../../assets/groupOfPeople.jpg"
-import OffcanvasDescription from '../../OffcanvasDescription/OffcanvasDescription';
+import OffcanvasDescription from '../OffcanvasDescription/OffcanvasDescription';
 import workoffice from "../../assets/workoffice.gif"
 import { RiHomeHeartFill } from "react-icons/ri"
 import { BiBookHeart } from "react-icons/bi"
@@ -21,31 +21,9 @@ const mapDispatchToProps = (dispatch) => ({
 class Companies extends Component {
 
     state={
-        /* companies:[], */
         companySearch:"",
         companyCount:""
     }
-
-    /*searchCompanies = async (e) => {
-        if(e.key === "Enter"){
-            e.preventDefault()
-             try {
-                const response = await fetch(`https://remotive.io/api/remote-jobs?company_name=${this.state.companySearch}`) 
-                const data = await response.json()
-                console.log(data.jobs);
-                if(response.ok){
-                    this.setState({
-                        ...this.state,
-                        companies: data.jobs,
-                        companyCount: data["job-count"]
-                    })
-                }
-            } catch (error) {
-                console.log(error);
-            } 
-        }
-    }  
-    */  
 
     render() {
        

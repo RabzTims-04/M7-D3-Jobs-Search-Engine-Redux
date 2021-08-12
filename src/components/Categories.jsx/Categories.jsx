@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Card, Form } from "react-bootstrap"
-import OffcanvasDescription from '../../OffcanvasDescription/OffcanvasDescription';
+import OffcanvasDescription from '../OffcanvasDescription/OffcanvasDescription';
 import { RiHomeHeartFill } from "react-icons/ri"
 import { BiBookHeart } from "react-icons/bi"
 import { GrWorkshop } from "react-icons/gr"
@@ -20,9 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
 class Categories extends Component {
 
     state={
-       /*  categories:[], */
         categorySearch:"",
-/*         categoryJobs:[], */
         categoryJobCount:"",
     }
 
@@ -30,40 +28,6 @@ class Categories extends Component {
         this.props.fetchCategories()
     }
 
-    fetchCategories = async (e) => {
-        /* try {
-            const response = await fetch(`https://remotive.io/api/remote-jobs/categories`) 
-            const data = await response.json()
-            console.log(data.jobs);
-            if(response.ok){
-                this.setState({
-                    ...this.state,
-                    categories: data.jobs,
-                })
-            }
-        } catch (error) {
-            console.log(error);
-        } */
-    }
-
-    /*searchCategories = async (e) => {
-        console.log(this.state.category);
-         try {
-            const response = await fetch(`https://remotive.io/api/remote-jobs?category=${this.state.categorySearch}`)
-            const data = await response.json()
-            console.log(data.jobs);
-            if(response.ok){
-                this.setState({
-                    ...this.state,
-                    categoryJobs: data.jobs,
-                    categoryJobCount: data["job-count"]
-                })
-            }
-
-        }catch (error){
-            console.log(error);
-        } 
-    }*/
     render() {
         return (
             <>

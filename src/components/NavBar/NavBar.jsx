@@ -17,6 +17,7 @@ class NavBar extends Component {
                     <Nav className="me-auto">
                     <Link className="nav-link" to="/companies">Companies</Link>
                     <Link className="nav-link" to="/jobs">Jobs</Link>
+                    <Link className="nav-link" to="/categories">Categories</Link>
                     <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

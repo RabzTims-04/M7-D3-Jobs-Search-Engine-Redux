@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col, Container } from 'react-bootstrap';
 import {  withRouter } from 'react-router-dom';
 import { removeFromFavouritesAction } from '../../redux/actions/actions';
-import OffcanvasDescription from '../../OffcanvasDescription/OffcanvasDescription';
+import OffcanvasDescription from '../OffcanvasDescription/OffcanvasDescription';
 
 const mapStateToProps = (state) => state
 

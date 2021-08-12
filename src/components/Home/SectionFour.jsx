@@ -12,7 +12,7 @@ class SectionFour extends Component {
 
     render() {
         return (
-           <Container className="px-5 mb-5">
+           <Container className="px-5 mb-5 pt-4">
                 <Row  style={{backgroundColor:"black"}} className="px-5 pt-4 pb-5">
                 <Col>
                     <img src ={workWoman} className="img-fluid d-block section-four-img mt-3" alt="group of people"/>

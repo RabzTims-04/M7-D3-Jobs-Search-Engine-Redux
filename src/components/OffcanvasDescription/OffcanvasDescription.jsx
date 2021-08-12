@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState } from "react"
-import { Button, Offcanvas, Col } from "react-bootstrap"
+import { Offcanvas, Col } from "react-bootstrap"
 import { connect } from 'react-redux';
-import Details from '../components/Details/Details';
-import JobsList from '../components/JobsList/JobsList';
-import { addToFavouritesAction,removeFromFavouritesAction } from '../redux/actions/actions';
+import Details from '../Details/Details';
+import JobsList from '../JobsList/JobsList';
+import { addToFavouritesAction,removeFromFavouritesAction } from '../../redux/actions/actions';
 import { FcLike } from "react-icons/fc"
 import { AiOutlineHeart } from "react-icons/ai"
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Card, Form, FormControl } from "react-bootstrap"
-import OffcanvasDescription from '../../OffcanvasDescription/OffcanvasDescription';
+import OffcanvasDescription from '../OffcanvasDescription/OffcanvasDescription';
 import { RiHomeHeartFill } from "react-icons/ri"
 import { BiBookHeart } from "react-icons/bi"
 import { BiAlignLeft } from "react-icons/bi"
@@ -19,31 +19,9 @@ const mapDispatchToProps = (dispatch) => ({
 class JobTitle extends Component {
 
     state={
-        /* jobs:[], */
         search:"",
         jobcount:"",
     }
-
-    /*searchJobs = async (e) => {
-        if(e.key === "Enter"){
-        e.preventDefault()
-         try {
-            const response = await fetch(`https://remotive.io/api/remote-jobs?search=${this.state.search}`) 
-            const data = await response.json()
-            console.log(data);
-            if(response.ok){
-                this.setState({
-                    ...this.state,
-                    jobs: data.jobs,
-                    jobcount: data["job-count"]
-                })
-            }
-        } catch (error) {
-            console.log(error);
-        } 
-    }
-    }
-    */
 
     render() {
         return (

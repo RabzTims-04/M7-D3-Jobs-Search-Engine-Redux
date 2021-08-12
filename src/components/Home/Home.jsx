@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Form } from "react-bootstrap"
+import Footer from '../Footer/Footer';
 import "./Home.css"
 import MainCarousal from './MainCarousal';
 import SectionFour from './SectionFour';
@@ -27,8 +28,10 @@ class Home extends Component {
                         <p className="px-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore corporis illo, doloribus velit est dolores pariatur quibusdam neque eveniet! Asperiores qui commodi totam quas temporibus fugit pariatur natus, nulla laudantium.</p>
                     </div>
                 <hr/>
-                <SectionFour/>           
-            </Container>
+                <SectionFour/>  
+                <hr/>         
+            </Container>           
+            <Footer/>
             </>
         );
     }
