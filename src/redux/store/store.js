@@ -18,19 +18,23 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
      },
      companies:{
          companiesArray:[],
-         error: false
+         error: false,
+         isLoading: false
      },
      jobs:{
          jobsArray:[],
-         error: false
+         error: false,
+         isLoading: false
      },
      categories:{
          categoriesArray:[],
-         error: false
+         error: false,
+         isLoading: false
      },
      categoryJobs:{
         categoryJobsArray:[],
-        error: false
+        error: false,
+        isLoading: false
      }
  }
 

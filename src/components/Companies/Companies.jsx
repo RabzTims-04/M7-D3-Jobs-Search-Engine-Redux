@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card, Form, FormControl } from "react-bootstrap"
+import { Container, Row, Col, Card, Form, FormControl, Spinner } from "react-bootstrap"
 import "./Companies.css"
 import groupOfPeople from "../../assets/groupOfPeople.jpg"
 import OffcanvasDescription from '../OffcanvasDescription/OffcanvasDescription';
@@ -40,7 +40,12 @@ class Companies extends Component {
                                     <Card.Body>                                        
                                         <Card.Title className="text-center">Search for Best Companies</Card.Title>
                                             <div className="my-4">
-                                                <Form inline>
+                                                {this.props.companies.isLoading?
+                                                <>
+                                                <Spinner animation="grow" size="sm" />
+                                                <Spinner animation="grow" />
+                                                </>
+                                                :<Form inline>
                                                     <FormControl
                                                     onKeyDown={(e)=>this.props.searchCompanies(e, this.state.companySearch)}
                                                     id="custom-form"
@@ -54,6 +59,7 @@ class Companies extends Component {
                                                     placeholder="Search" 
                                                     className=" mr-sm-2" />
                                                 </Form>
+                                                }
                                             </div>
                                         <Card.Text>
                                         Some quick example text to build on the card title and make up the bulk of

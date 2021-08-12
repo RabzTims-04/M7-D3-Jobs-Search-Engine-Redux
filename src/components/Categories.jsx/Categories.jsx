@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card, Form } from "react-bootstrap"
+import { Container, Row, Col, Card, Form, Spinner } from "react-bootstrap"
 import OffcanvasDescription from '../OffcanvasDescription/OffcanvasDescription';
 import { RiHomeHeartFill } from "react-icons/ri"
 import { BiBookHeart } from "react-icons/bi"
@@ -42,7 +42,12 @@ class Categories extends Component {
                                     <Card.Body>                                        
                                         <Card.Title className="text-center mb-5">Search for Best Companies</Card.Title>
                                             <div className="my-4">
-                                                <Form.Group as={Col} controlId="formGridState">
+                                            {this.props.categoryJobs.isLoading?
+                                                <>
+                                                <Spinner animation="grow" size="sm" />
+                                                <Spinner animation="grow" />
+                                                </>
+                                                :<Form.Group as={Col} controlId="formGridState">
                                                     <Form.Control
                                                     id="custom-form-categories"
                                                     value={this.state.categorySearch}
@@ -62,6 +67,7 @@ class Categories extends Component {
                                                     
                                                     </Form.Control>
                                                 </Form.Group>
+                                                }
                                             </div>
                                     </Card.Body>
                                 </Card>

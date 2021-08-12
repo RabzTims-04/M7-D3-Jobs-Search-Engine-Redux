@@ -19,11 +19,19 @@ export const fetchCompaniesAction = (event, companySearch) => {
     return async (dispatch, getState) => {
         if(event.key === "Enter"){
             event.preventDefault()
-        try {
+            try {
+            dispatch({
+                type: actionTypes.FETCH_COMPANIES_LOADING,
+                payload: true
+            })
             const response = await fetch(`https://remotive.io/api/remote-jobs?company_name=${companySearch}`) 
             const data = await response.json()
             console.log(data.jobs);
             if(response.ok){
+                dispatch({
+                    type: actionTypes.FETCH_COMPANIES_LOADING,
+                    payload: false
+                })
                 dispatch({
                     type: actionTypes.FETCH_COMPANIES,
                     payload: data.jobs
@@ -55,11 +63,19 @@ export const fetchJobsAction = (event, jobSearch) => {
     return async (dispatch, getState) => {
         if(event.key === "Enter"){
             event.preventDefault()
-        try {
+            try {
+            dispatch({
+                type: actionTypes.FETCH_JOBS_LOADING,
+                payload: true
+            })
             const response = await fetch(`https://remotive.io/api/remote-jobs?search=${jobSearch}`) 
             const data = await response.json()
             console.log(data);
             if(response.ok){
+                dispatch({
+                    type: actionTypes.FETCH_JOBS_LOADING,
+                    payload: false
+                })
                 dispatch({
                     type: actionTypes.FETCH_JOBS,
                     payload: data.jobs
@@ -90,10 +106,18 @@ export const fetchJobsAction = (event, jobSearch) => {
 export const fetchCategoriesAction = () => {
     return async (dispatch, getState) => {
         try {
+            dispatch({
+                type: actionTypes.FETCH_CATEGORIES_LOADING,
+                payload: true
+            })
             const response = await fetch(`https://remotive.io/api/remote-jobs/categories`) 
             const data = await response.json()
             console.log(data.jobs);
             if(response.ok){
+                dispatch({
+                    type: actionTypes.FETCH_CATEGORIES_LOADING,
+                    payload: false
+                })
                 dispatch({
                     type: actionTypes.FETCH_CATEGORIES,
                     payload: data.jobs
@@ -124,10 +148,18 @@ export const fetchCategoriesAction = () => {
 export const fetchCategoryJobsAction = (categorySearch) => {
     return async (dispatch, getState) => {
         try {
+            dispatch({
+                type: actionTypes.FETCH_CATEGORY_JOBS_LOADING,
+                payload: true
+            })
             const response = await fetch(`https://remotive.io/api/remote-jobs?category=${categorySearch}`)
             const data = await response.json()
             console.log(data.jobs);
             if(response.ok){
+                dispatch({
+                    type: actionTypes.FETCH_CATEGORY_JOBS_LOADING,
+                    payload: false
+                })
                 dispatch({
                     type: actionTypes.FETCH_CATEGORY_JOBS,
                     payload: data.jobs

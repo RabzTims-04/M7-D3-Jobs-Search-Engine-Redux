@@ -1,5 +1,5 @@
 import { initialState } from "../store/store"
-import { FETCH_JOBS, FETCH_JOBS_ERROR } from "../actions/actionTypes"
+import { FETCH_JOBS, FETCH_JOBS_ERROR, FETCH_JOBS_LOADING } from "../actions/actionTypes"
 
 
 const jobsReducer = (state = initialState.jobs, action) => {
@@ -12,6 +12,10 @@ const jobsReducer = (state = initialState.jobs, action) => {
         case FETCH_JOBS_ERROR: return {
             ...state,
             error: action.payload
+        }
+        case FETCH_JOBS_LOADING: return {
+            ...state,
+            isLoading: action.payload
         }
         default: {
             return state

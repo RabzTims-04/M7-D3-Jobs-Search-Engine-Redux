@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Card, Form, FormControl } from "react-bootstrap"
+import { Container, Row, Col, Card, Form, FormControl, Spinner } from "react-bootstrap"
 import OffcanvasDescription from '../OffcanvasDescription/OffcanvasDescription';
 import { RiHomeHeartFill } from "react-icons/ri"
 import { BiBookHeart } from "react-icons/bi"
@@ -37,7 +37,12 @@ class JobTitle extends Component {
                                     <Card.Body>                                        
                                         <Card.Title className="text-center">Find Your Dream Job</Card.Title>
                                             <div className="my-4">
-                                                <Form inline>
+                                            {this.props.jobs.isLoading?
+                                                <>
+                                                <Spinner animation="grow" size="sm" />
+                                                <Spinner animation="grow" />
+                                                </>
+                                                :<Form inline>
                                                     <FormControl
                                                     onKeyDown={(e)=>this.props.searchJobs(e, this.state.search)}
                                                     id="custom-form-jobs"
@@ -51,7 +56,8 @@ class JobTitle extends Component {
                                                     placeholder="Search" 
                                                     className=" mr-sm-2" />
                                                 </Form>
-                                            </div>
+                                                 }
+                                            </div>                                               
                                         <Card.Text>
                                         Some quick example text to build on the card title and make up the bulk of
                                         the card's content.
