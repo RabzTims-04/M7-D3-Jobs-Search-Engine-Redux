@@ -11,7 +11,6 @@ import { MdWork } from "react-icons/md"
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCompaniesAction } from '../../redux/actions/actions';
-import Error from "../Error/Error"
 
 const mapStateToProps = (state) => state
 
