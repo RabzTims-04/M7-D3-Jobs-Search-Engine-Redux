@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Button, Container } from 'react-bootstrap';
-import { FcDislike } from "react-icons/fc";
-import { Link, withRouter } from 'react-router-dom';
+import { Row, Col, Container } from 'react-bootstrap';
+import {  withRouter } from 'react-router-dom';
 import { removeFromFavouritesAction } from '../../redux/actions/actions';
+import OffcanvasDescription from '../../OffcanvasDescription/OffcanvasDescription';
 
 const mapStateToProps = (state) => state
 
 const mapDispatchToProps = (dispatch) => ({
-    removeFromFavourites: index => dispatch(removeFromFavouritesAction(index))
+    removeFromFavourites: company => dispatch(removeFromFavouritesAction(company))
 })
 
 class Favourites extends Component {
@@ -20,14 +20,9 @@ class Favourites extends Component {
                 <Row>
                 <Col sm={12}>
                 <ul style={{ listStyle: "none" }}>
-                    {this.props.favourites.companies.length ? this.props.favourites.companies.map((company, i) => (
-                    <li key={i} className="my-4 d-flex">
-                        <Button variant="outline-light" className="mr-3" onClick={() => this.props.removeFromFavourites(i)}>
-                        <FcDislike />
-                        </Button>
-                        <Link className="mt-2" to={`/details/${company.id}`}>{company.company_name}</Link>
-                    </li>
-                    )): <p>No favourites to show</p>}
+                    {this.props.favourites.companies.length ? 
+                     <OffcanvasDescription jobs={this.props.favourites.companies}/>
+                    : <p>No favourites to show</p>}
                 </ul>
                 </Col>
             </Row>

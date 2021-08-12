@@ -5,6 +5,8 @@ import { BrowserRouter,Route } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar';
 import { useState } from 'react'
 import Favourites from './components/Favourites/Favourites';
+import Companies from './components/Companies/Companies';
+import JobTitle from './components/JobTitle/JobTitle';
 
 function App() {
 
@@ -24,12 +26,16 @@ function App() {
     setSearchCategory(value)
   }
   return (
+    <>
     <BrowserRouter>
-    <NavBar/>
+      <NavBar/>
       <Route exact path="/" render={(routerProps)=> <Home category={categoryData} companies={companiesData} jobs={jobsData} {...routerProps}  />} />
+      <Route exact path="/companies" render={(routerProps) => <Companies {...routerProps} />} />
+      <Route exact path="/jobs" render={(routerProps) => <JobTitle {...routerProps} />} />
       <Route exact path="/details/:id" render={(routerProps)=> <Details category={searchCategory} companies={searchCompanies} jobs={searchJobs} {...routerProps}  />} />
       <Route exact path="/favourites" component={Favourites} />
     </BrowserRouter>
+    </>
   );
 }
 

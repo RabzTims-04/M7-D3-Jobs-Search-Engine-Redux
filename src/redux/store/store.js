@@ -7,6 +7,9 @@ import mainReducer from "../reducers/reducers"
      },
      alert:{
          message:false
+     },
+     jobDetails:{
+         details:{}
      }
  }
 

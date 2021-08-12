@@ -23,7 +23,14 @@ const mainReducer = (state = initialState, action) => {
             ...state,
             favourites:{
                 ...state.favourites,
-                companies: state.favourites.companies.filter((company, i) => i !== action.payload)
+                companies: state.favourites.companies.filter((company, i) => company.id !== action.payload.id)
+            }
+        }
+        case "JOB_DETAILS_ADDED": return {
+            ...state,
+            jobDetails:{
+                ...state.jobDetails,
+                details: action.payload
             }
         }
         default: {

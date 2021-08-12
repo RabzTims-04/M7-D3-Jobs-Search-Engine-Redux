@@ -4,7 +4,12 @@ export const addToFavouritesAction = (company) => ({
     payload: company
 })
 
-export const removeFromFavouritesAction = (index) => ({
+export const removeFromFavouritesAction = (company) => ({
     type: "REMOVE_FROM_FAVOURITES",
-    payload: index
+    payload: company
+})
+
+export const addJobDetails = (job) => ({
+    type: "JOB_DETAILS_ADDED",
+    payload: job
 })

@@ -1,0 +1,17 @@
+.carousal-img{
+    height: 500px;
+}
+
+.carousel-control-next{
+    color:black!important;
+    text-decoration: none;
+}
+
+.carousel-control-prev{
+    color:black!important;
+    text-decoration: none;
+}
+
+.carousel-control-next-icon{
+    color: black!important;
+}

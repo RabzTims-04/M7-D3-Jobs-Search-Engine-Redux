@@ -1,65 +1,22 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Form, Button, FormControl } from "react-bootstrap"
-import JobsList from "../JobsList/JobsList"
+import { Container, Row, Col, Form } from "react-bootstrap"
 import "./Home.css"
+import MainCarousal from './MainCarousal';
+import SectionThree from './SectionThree';
+import SectionTwo from './SectionTwo';
 
 class Home extends Component {
     state={
-        jobs:[],
-        companies:[],
-        search:"",
-        companySearch:"",
         categories:[],
         categorySearch:"",
         categoryJobs:[],
-        jobcount:"",
         categoryJobCount:"",
-        companyCount:""
     }
 
     componentDidMount = () => {
         this.fetchCategories()
     }
 
-    searchJobs = async (e) => {
-        e.preventDefault()
-        try {
-            const response = await fetch(`https://remotive.io/api/remote-jobs?search=${this.state.search}`) 
-            const data = await response.json()
-            this.props.jobs(data.jobs)
-            console.log(data);
-            if(response.ok){
-                this.setState({
-                    ...this.state,
-                    jobs: data.jobs,
-                    jobcount: data["job-count"]
-                })
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-
-    searchCompanies = async (e) => {
-        e.preventDefault()
-        try {
-            const response = await fetch(`https://remotive.io/api/remote-jobs?company_name=${this.state.companySearch}`) 
-            const data = await response.json()
-            this.props.companies(data.jobs)
-            console.log(data.jobs);
-            if(response.ok){
-                this.setState({
-                    ...this.state,
-                    companies: data.jobs,
-                    companyCount: data["job-count"]
-                })
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    
     fetchCategories = async (e) => {
         try {
             const response = await fetch(`https://remotive.io/api/remote-jobs/categories`) 
@@ -99,24 +56,17 @@ class Home extends Component {
     render() {
         return (
             <>
-            <Container fluid className="" >
+            <Container  className="" >
+            <hr/>
+            <h1>Careers</h1>
+                <MainCarousal/>
+                <SectionTwo/>
+                <div className="text-center my-5 px-5 py-3">
+                    <h3>What we Believe</h3>
+                    <p className="px-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore corporis illo, doloribus velit est dolores pariatur quibusdam neque eveniet! Asperiores qui commodi totam quas temporibus fugit pariatur natus, nulla laudantium.</p>
+                </div>
+                <SectionThree/>
                 <Row className="justify-content-center mt-5 mb-2 home-body pb-5">
-                   <Col md={4} className=" ">
-                       <h4 className="py-3 ml-5">Search By Job Title</h4>
-                        <Form inline onSubmit={(e)=>this.searchJobs(e)}>
-                            <FormControl
-                            value={this.state.search}
-                            onChange={(e)=>
-                                this.setState({
-                                    ...this.state,
-                                    search:e.target.value
-                            })}	
-                            type="text" 
-                            placeholder="Search" 
-                            className=" mr-sm-2" />
-                            <Button type="submit">Submit</Button>
-                        </Form>
-                   </Col>
                    
                    <Col md={4} className="ml-auto">
                    <h4 className="py-3 text-center">Filter by Category</h4>
@@ -140,31 +90,8 @@ class Home extends Component {
                             </Form.Control>
                         </Form.Group>
                    </Col>
-
-                   <Col md={4} className="ml-auto">
-                   <h4 className="py-3 ml-2">Search By Company Name</h4>
-                        <Form inline onSubmit={(e)=>this.searchCompanies(e)}>
-                            <FormControl
-                            value={this.state.companySearch}
-                            onChange={(e)=>
-                                this.setState({
-                                    ...this.state,
-                                    companySearch:e.target.value
-                            })}	
-                            type="text" 
-                            placeholder="Search" 
-                            className=" mr-sm-2" />
-                            <Button type="submit">Submit</Button>
-                        </Form>
-                   </Col>
-                </Row>
-                {this.state.jobs.length? <p>Total results: {this.state.jobcount}</p>
-                : this.state.categoryJobs.length? <p> Total results: {this.state.categoryJobCount}</p>
-                :this.state.companies.length?  <p> Total results: {this.state.companyCount}</p> 
-                : <></> }
-            
+                </Row>            
             </Container>
-            <JobsList jobs={this.state.jobs.length ?this.state.jobs:this.state.companies.length?this.state.companies:this.state.categoryJobs} />
             </>
         );
     }

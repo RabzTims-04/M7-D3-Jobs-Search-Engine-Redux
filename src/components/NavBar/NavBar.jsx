@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavDropdown } from "react-bootstrap"
+import { Navbar, Nav, NavDropdown, Container, Button, Badge } from "react-bootstrap"
 import { Link, withRouter } from 'react-router-dom';
 import { FcLike } from "react-icons/fc"
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state) => state
 
 class NavBar extends Component {
     render() {
         return (
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+                <Container>
                 <Link to="/" className="navbar-brand">FutureJobs&copy;</Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto">
-                    <Nav.Link onClick={() => this.props.history.push("/favourites")}>Favourites</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
+                    <Nav className="me-auto">
+                    <Link className="nav-link" to="/companies">Companies</Link>
+                    <Link className="nav-link" to="/jobs">Jobs</Link>
                     <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -22,15 +26,20 @@ class NavBar extends Component {
                     </NavDropdown>
                     </Nav>
                     <Nav>
-                    <Nav.Link href="#deets">Contact</Nav.Link>
                     <Link className="nav-link" eventKey={2} to="/favourites">
-                        <FcLike/>
+                        <Button variant="outline-light">
+                            <FcLike/>
+                            <Badge bg="light" text="dark">{this.props.favourites.companies.length}</Badge>
+                        </Button>                        
                     </Link>
+                    
                     </Nav>
                 </Navbar.Collapse>
+                </Container>
             </Navbar>
+            
         );
     }
 }
 
-export default withRouter(NavBar);
+export default connect(mapStateToProps)(withRouter(NavBar));

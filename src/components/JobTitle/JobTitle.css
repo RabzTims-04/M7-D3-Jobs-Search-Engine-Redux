@@ -1,0 +1,13 @@
+#custom-form-jobs{
+    border-radius: 25px!important;
+}
+
+.side-panels-jobs{
+    min-height: 100vh;
+}
+
+.background-img-jobs{
+    background-image: url("https://prezibase.com/wp-content/uploads/2015/05/the-future-hud-technology-animated-prezi-template.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
