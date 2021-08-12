@@ -11,6 +11,7 @@ import { MdWork } from "react-icons/md"
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCompaniesAction } from '../../redux/actions/actions';
+import Error from "../Error/Error"
 
 const mapStateToProps = (state) => state
 
@@ -94,8 +95,10 @@ class Companies extends Component {
                                             </li>
                                         </Link>
                                     </ul>
-                                </div>
-                    </Col>
+                                </div>                    
+                    </Col>  
+
+
 
                     {!this.props.companies.companiesArray.length? 
 
@@ -105,7 +108,6 @@ class Companies extends Component {
                         </div>
                         <p style={{ color:"white", padding:"0 20%"}} className="text-center pt-4 pb-3">We have looked for best companies that meet your requirements, expectations and demands. Chose what you like and make your dreams come true </p>
                     </Col>
-
                     :<Col  md={8} >
                         <div style={{color:"darkBlue"}} className="text-center pt-4 pb-3">
                             <h2>Search For Company that best suits you</h2>
