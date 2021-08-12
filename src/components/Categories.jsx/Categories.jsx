@@ -1,49 +1,64 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Card, Form, FormControl } from "react-bootstrap"
-import "./Companies.css"
-import groupOfPeople from "../../assets/groupOfPeople.jpg"
 import OffcanvasDescription from '../../OffcanvasDescription/OffcanvasDescription';
-import workoffice from "../../assets/workoffice.gif"
 import { RiHomeHeartFill } from "react-icons/ri"
 import { BiBookHeart } from "react-icons/bi"
-import { BiAlignLeft } from "react-icons/bi"
+import { GrWorkshop } from "react-icons/gr"
 import { MdWork } from "react-icons/md"
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import "./Categories.css"
 
 const mapStateToProps = (state) => state
 
-class Companies extends Component {
+class Categories extends Component {
 
     state={
-        companies:[],
-        companySearch:"",
-        companyCount:""
+        categories:[],
+        categorySearch:"",
+        categoryJobs:[],
+        categoryJobCount:"",
     }
 
-    searchCompanies = async (e) => {
-        if(e.key === "Enter"){
-            e.preventDefault()
-            try {
-                const response = await fetch(`https://remotive.io/api/remote-jobs?company_name=${this.state.companySearch}`) 
-                const data = await response.json()
-                /* this.props.companies(data.jobs) */
-                console.log(data.jobs);
-                if(response.ok){
-                    this.setState({
-                        ...this.state,
-                        companies: data.jobs,
-                        companyCount: data["job-count"]
-                    })
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }    
+    componentDidMount = () => {
+        this.fetchCategories()
+    }
 
+    fetchCategories = async (e) => {
+        try {
+            const response = await fetch(`https://remotive.io/api/remote-jobs/categories`) 
+            const data = await response.json()
+            console.log(data.jobs);
+            if(response.ok){
+                this.setState({
+                    ...this.state,
+                    categories: data.jobs,
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    searchCategories = async (e) => {
+        console.log(this.state.category);
+        try {
+            const response = await fetch(`https://remotive.io/api/remote-jobs?category=${this.state.categorySearch}`)
+            const data = await response.json()
+            console.log(data.jobs);
+            if(response.ok){
+                this.setState({
+                    ...this.state,
+                    categoryJobs: data.jobs,
+                    categoryJobCount: data["job-count"]
+                })
+            }
+
+        }catch (error){
+            console.log(error);
+        }
+    }
     render() {
-       
         return (
             <>
             <style type="text/css">
@@ -51,31 +66,32 @@ class Companies extends Component {
           </style>
             <Container fluid>
                 <Row >
-                    <Col style={{borderRight:"1px solid #F3F2EF"}} className="side-panels p-0" md={2}>
+                    <Col style={{borderRight:"1px solid #F3F2EF"}} className="side-panels p-0" md={3}>
                         <Card style={{ width: '100%', border:"none", paddingTop:"40px", backgroundColor:"transparent" }}>
                             <Link style={{color:'black', fontWeight:"bolder"}} to="/" className="navbar-brand text-center">FutureJobs&copy;</Link>
                                     <Card.Body>                                        
-                                        <Card.Title className="text-center">Search for Best Companies</Card.Title>
+                                        <Card.Title className="text-center mb-5">Search for Best Companies</Card.Title>
                                             <div className="my-4">
-                                                <Form inline>
-                                                    <FormControl
-                                                    onKeyDown={(e)=>this.searchCompanies(e)}
-                                                    id="custom-form"
-                                                    value={this.state.companySearch}
-                                                    onChange={(e)=>
+                                                <Form.Group as={Col} controlId="formGridState">
+                                                    <Form.Control
+                                                    value={this.state.categorySearch}
+                                                    onChange={(e)=> {
                                                         this.setState({
-                                                            ...this.state,
-                                                            companySearch:e.target.value
-                                                    })}	
-                                                    type="text" 
-                                                    placeholder="Search" 
-                                                    className=" mr-sm-2" />
-                                                </Form>
+                                                        ...this.state,
+                                                        categorySearch:e.target.value
+                                                    })
+                                                    this.searchCategories(e)
+                                                }}
+                                                    as="select" 
+                                                    defaultValue="Select...">
+                                                        <option>Select...</option>
+                                                        {this.state.categories && this.state.categories.map(category =>  
+                                                        <option value={category.name}>{category.name}</option>
+                                                        )}
+                                                    
+                                                    </Form.Control>
+                                                </Form.Group>
                                             </div>
-                                        <Card.Text>
-                                        Some quick example text to build on the card title and make up the bulk of
-                                        the card's content.
-                                        </Card.Text>
                                     </Card.Body>
                                 </Card>
                                 <div className="pl-2">
@@ -92,10 +108,10 @@ class Companies extends Component {
                                                 <span className="pl-2" style={{paddingLeft:"2rem", color:"black"}} >Favourites {this.props.favourites.companies.length}</span>   
                                             </li>
                                         </Link>
-                                        <Link style={{textDecoration:"none"}} to="/categories">
+                                        <Link style={{textDecoration:"none"}} to="/companies">
                                             <li className="mt-3">
-                                                <BiAlignLeft className="" style={{width:"30px", height:"30px", color:"black"}}/> 
-                                                <span className="pl-2" style={{paddingLeft:"2rem", color:"black"}} >Categories</span>   
+                                                <GrWorkshop className="" style={{width:"30px", height:"30px", color:"black"}}/> 
+                                                <span className="pl-2" style={{paddingLeft:"2rem", color:"black"}} >Companies</span>   
                                             </li>
                                         </Link>
                                         <Link style={{textDecoration:"none"}} to="/jobs">
@@ -108,9 +124,9 @@ class Companies extends Component {
                                 </div>
                     </Col>
 
-                    {!this.state.companies.length? 
+                    {!this.state.categoryJobs.length? 
 
-                    <Col className="background-img"  md={8} >
+                    <Col className="background-img"  md={9} >
                         <div style={{marginTop:"20%", color:"white"}} className="text-center pt-4 pb-3">
                             <h2>Search For Company that best suits you</h2>
                         </div>
@@ -122,20 +138,10 @@ class Companies extends Component {
                             <h2>Search For Company that best suits you</h2>
                         </div>
                         <Row style={{backgroundColor:"#F3F2EF"}}>
-                            <OffcanvasDescription jobs={this.state.companies}/>
+                            <OffcanvasDescription jobs={this.state.categoryJobs}/>
                         </Row>
                     </Col> 
                 }
-
-                    <Col className="p-0" style={{borderLeft:"1px solid #F3F2EF"}} md={2}>
-                        <img src ={groupOfPeople} className="img-fluid d-block w-100 " alt="group of people"/>
-                       <div className="my-5 px-2">
-                       <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit totam quas animi iusto architecto similique minima quasi in eius repellat, tenetur consectetur unde
-                        </p>
-                       </div>
-                       <img src ={workoffice} className="img-fluid d-block w-100 " alt="group of people"/>
-                    </Col>
                 </Row>                
             </Container>
             </>
@@ -143,4 +149,4 @@ class Companies extends Component {
     }
 }
 
-export default connect(mapStateToProps)(Companies);
+export default connect(mapStateToProps)(Categories);

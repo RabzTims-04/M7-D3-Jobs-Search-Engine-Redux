@@ -1,0 +1,13 @@
+#custom-btn-section-four{
+    border-radius: 25px!important;
+}
+
+#custom-btn-section-four:hover{
+    background-color: rgb(233, 213, 185);
+}
+
+.section-four-img{
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+}

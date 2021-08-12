@@ -88,7 +88,7 @@ class JobTitle extends Component {
                                                 <span className="pl-2" style={{paddingLeft:"2rem", color:"black"}} >Favourites {this.props.favourites.companies.length}</span>   
                                             </li>
                                         </Link>
-                                        <Link style={{textDecoration:"none"}} to="/">
+                                        <Link style={{textDecoration:"none"}} to="/categories">
                                             <li className="mt-3">
                                                 <BiAlignLeft className="" style={{width:"30px", height:"30px", color:"black"}}/> 
                                                 <span className="pl-2" style={{paddingLeft:"2rem", color:"black"}} >Categories</span>   

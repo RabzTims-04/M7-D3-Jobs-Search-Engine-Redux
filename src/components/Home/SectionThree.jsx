@@ -5,13 +5,13 @@ import sectionThree from "../../assets/sectionThree.jpg"
 import "./SectionTwo.css"
 
 class SectionThree extends Component {
-    
+
     componentDidMount = () =>{
         console.log(this.props.history);
     }
     render() {
         return (
-            <Row style={{backgroundColor:"rgb(243, 242, 239)"}}>
+            <Row className="mb-5" style={{backgroundColor:"rgb(243, 242, 239)"}}>
                 <Col>
                     <Card style={{ width: '100%', border:"none", paddingTop:"70px", backgroundColor:"transparent" }}>
                         <Card.Body>
